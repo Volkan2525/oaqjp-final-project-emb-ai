@@ -10,6 +10,10 @@ def render_page():
 @app.route("/emotionDetector")
 def emotion_detect():
     txt = request.args.get('textToAnalyze')
+    resp = emotion_detector(txt)
+    if resp['anger'] is None:
+        return "Invalid text! Please try again!"
+
     return emotion_detector(txt)
 
 app.run(host="0.0.0.0",port=5000)
